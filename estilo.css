@@ -1,0 +1,37 @@
+* { box-sizing: border-box; }
+:root { font-family: "Source Sans 3", "Segoe UI", sans-serif; color: #24241f; background: #f7f6f2; line-height: 1.48; }
+body { margin: 0; }
+main { width: min(1080px, 100% - 36px); margin: 0 auto; padding: 30px 0; }
+header { border-bottom: 1px solid #a3a398; padding-bottom: 18px; }
+.curso { font-size: .79rem; letter-spacing: .08em; font-weight: 650; }
+h1 { font-family: "Source Serif 4", Georgia, serif; font-size: clamp(2.5rem, 7vw, 4.2rem); line-height: 1; margin: 10px 0 14px; }
+h2 { margin: 0 0 8px; font-size: 1.3rem; }
+h3 { font-size: 1.08rem; margin: 20px 0 6px; }
+p { margin: 0 0 10px; }
+.firma, .leyenda { color: #4e4d45; font-size: .91rem; }
+section { padding: 20px 0; border-bottom: 1px solid #d4d2ca; }
+a { color: #24241f; text-underline-offset: 3px; }
+summary { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+details p { margin: 8px 0 0; }
+form { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 10px; }
+label { display: grid; gap: 4px; font-size: .92rem; }
+input, button { font: inherit; border: 1px solid #929187; border-radius: 3px; padding: 8px; }
+input { width: 100%; color: inherit; background: white; }
+button { cursor: pointer; background: #24241f; color: #fff; padding-inline: 14px; }
+button + button { background: transparent; color: #24241f; }
+.acciones { grid-column: 1 / -1; display: flex; gap: 8px; }
+#aviso { margin-top: 12px; font-weight: 650; }
+.graficas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+figure { margin: 0; padding: 8px 10px 2px; border: 1px solid #d4d2ca; background: #fff; }
+figcaption { font-weight: 650; padding-left: 5px; }
+svg { width: 100%; height: auto; display: block; }
+.leyenda { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 5px; }
+.tabla { overflow: auto; border: 1px solid #d4d2ca; background: #fff; }
+.iteraciones { max-height: 360px; }
+table { border-collapse: collapse; width: 100%; font-size: .91rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; white-space: nowrap; padding: 6px 9px; border-bottom: 1px solid #e4e2db; }
+th { position: sticky; top: 0; background: #eeede7; }
+tr:last-child td { border-bottom: 0; }
+footer { margin-top: 12px; }
+@media (max-width: 750px) { form { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+@media (max-width: 520px) { form { grid-template-columns: repeat(2,minmax(0,1fr)); } .graficas { grid-template-columns: 1fr; } }

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Euler en el espacio · INF 373</title>
+<link rel="stylesheet" href="estilo.css">
+<script defer src="modelo.js"></script>
+<script defer src="simulador.js"></script>
+</head>
+<body>
+<main>
+<header>
+  <p class="curso">MÉTODOS NUMÉRICOS / INF 373</p>
+  <h1>Euler en el espacio</h1>
+  <p>¿Cómo cambia el error en la velocidad y la altura de un cohete cuando reducimos el paso de Euler?</p>
+  <p class="firma">Carlos Angel Moya Choque · Trabajo individual<br>Docente Brígida Alexandra Carvajal Blanco</p>
+</header>
+
+<section aria-labelledby="modelo">
+  <h2 id="modelo">Modelo de ascenso vertical</h2>
+  <p>El cohete ficticio parte del reposo desde el suelo. Su masa, empuje, gravedad y coeficiente de resistencia se mantienen constantes. El ascenso se modela con <strong>v′ = T/m − g − (k/m)v</strong> y <strong>y′ = v</strong>.</p>
+  <details><summary>Contexto de la película y solución analítica</summary>
+    <p>La actividad se inspira en <em>Talentos ocultos</em> (<em>Hidden Figures</em>). Katherine Johnson verificó los cálculos orbitales de la misión Friendship 7 de John Glenn en 1962. <a href="https://www.nasa.gov/centers-and-facilities/langley/katherine-johnson-biography/">Biografía de Katherine Johnson en NASA</a>.</p>
+    <p>Para a = T/m − g y b = k/m, Euler usa vₙ₊₁ = vₙ + h(a − bvₙ) y yₙ₊₁ = yₙ + hvₙ. Ambas actualizaciones usan la velocidad del inicio del paso. Con b &gt; 0, la referencia exacta es v(t) = (a/b)(1 − e<sup>−bt</sup>) e y(t) = (a/b)t − v(t)/b. Para b = 0, v(t) = at e y(t) = at²/2.</p>
+  </details>
+</section>
+
+<section aria-labelledby="datos">
+  <h2 id="datos">Datos de la simulación</h2>
+  <form id="parametros">
+    <label>Masa (kg)<input name="masa" type="number" step="any" min="0.000001" required></label>
+    <label>Empuje (N)<input name="empuje" type="number" step="any" min="0.000001" required></label>
+    <label>Gravedad (m/s²)<input name="gravedad" type="number" step="any" min="0" required></label>
+    <label>Resistencia (kg/s)<input name="resistencia" type="number" step="any" min="0" required></label>
+    <label>Tiempo final (s)<input name="tiempo" type="number" step="any" min="0.000001" required></label>
+    <label>Paso de Euler (s)<input name="paso" type="number" step="any" min="0.000001" required></label>
+    <div class="acciones"><button>Simular</button><button id="restaurar" type="button">Restaurar datos</button></div>
+  </form>
+  <p id="aviso" role="alert" hidden></p>
+</section>
+
+<section id="resultados" aria-labelledby="salida">
+  <h2 id="salida">Resultados</h2>
+  <p id="resumen" aria-live="polite"></p>
+  <div class="graficas">
+    <figure><figcaption>Velocidad (m/s)</figcaption><div id="velocidad"></div></figure>
+    <figure><figcaption>Altura (m)</figcaption><div id="altura"></div></figure>
+  </div>
+  <p class="leyenda"><span>━━ Solución exacta</span><span>┄┄ Euler</span><span>Eje horizontal en segundos</span></p>
+
+  <h3>Comparación de pasos al tiempo final</h3>
+  <p>Las metas del desafío son errores menores que 0,5 m/s en velocidad y 5 m en altura.</p>
+  <div class="tabla" tabindex="0" aria-label="Comparación de pasos">
+  <table id="comparacion">
+    <thead><tr><th>Paso (s)</th><th>Iteraciones</th><th>Euler v (m/s)</th><th>Error v (m/s)</th><th>Euler y (m)</th><th>Error y (m)</th><th>Cumple</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+
+  <h3>Tabla de iteraciones</h3>
+  <div class="tabla iteraciones" tabindex="0" aria-label="Tabla de iteraciones">
+  <table id="iteraciones">
+    <thead><tr><th>t (s)</th><th>Euler v (m/s)</th><th>Exacta v (m/s)</th><th>Error v (m/s)</th><th>Euler y (m)</th><th>Exacta y (m)</th><th>Error y (m)</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+</section>
+<footer><a href="https://github.com/cmoya21/euler-en-el-espacio-inf373">Código fuente en GitHub</a></footer>
+</main>
+</body>
+</html>
